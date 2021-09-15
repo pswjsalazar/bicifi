@@ -1,0 +1,82 @@
+<div *ngIf="smallView; else elseBlock">
+  <div *ngFor="let canalSegment of items; index as index">
+    <div class="row mb-3">
+      <div class="col-11">
+        <div class="card">
+          <div class="card-body">
+            {{canalSegment.name}}
+          </div>
+        </div>
+      </div>
+      <div class="col-1 mt-3">
+        <span (click)="edit(canalSegment)" class="material-icons" style="font-size: 36px">edit</span>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <form #form="ngForm" class="mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">Agregar Paso Intermedio</label>
+          </div>
+          <div class="col">
+            <span (click)="addStep()" class="material-icons" style="font-size: 36px">add_circle</span>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div *ngIf="this.canalSegment.intermediaryChannel.length>0">
+            <app-step-segment [items]="this.canalSegment.intermediaryChannel" class="mb-3"></app-step-segment>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">Ingrese Nombre</label>
+          </div>
+          <div class="col">
+            <input [(ngModel)]="canalSegment.name" [ngModelOptions]="{standalone: true}" class="form-control"
+                   placeholder="Ingrese Nombre"
+                   type="text">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">Técnicas de Generación de Demanda</label>
+          </div>
+          <div class="col">
+            <div *ngFor="let demandGenerationTechniques of canalSegment.demandGenerationTechniques; index as index">
+              <div class="row mb-3">
+                <div class="col-10">
+                  <input [(ngModel)]="demandGenerationTechniques.name" [ngModelOptions]="{standalone: true}"
+                         class="form-control"
+                         placeholder="Ingrese Nombre"
+                         type="text">
+                </div>
+                <div class="col-2">
+                  <span (click)="addDemandGenerationTechniques()" class="material-icons" style="font-size: 36px">add_circle</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">Ingrese Segmentos / Verticales</label>
+          </div>
+          <div class="col">
+            <input [(ngModel)]="canalSegment.segmentsVerticals" [ngModelOptions]="{standalone: true}"
+                   class="form-control"
+                   placeholder="Ingrese Nombre"
+                   type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!editView" class="text-center mt-3">
+      <button (click)="save()" class="btn btn-lg  text-white mr-3 mb-3 " style="background: #ff8380">Guardar Segmento
+      </button>
+    </div>
+  </form>
+</ng-template>

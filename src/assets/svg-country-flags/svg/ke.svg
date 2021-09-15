@@ -1,0 +1,23 @@
+<svg viewBox="-120 -80 240 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<path d="M -1,55.4256258422040733928782829281879157421699 h 2 V -38 C 3,-40 3,-43 3,-46 C 3,-48 3,-56 0,-64.6632301492380856250246634162192350325315 C -3,-56 -3,-48 -3,-46 C -3,-43 -3,-40 -1,-38 z" id="spearshape" stroke-miterlimit="10" transform="rotate(30)"/>
+</defs>
+<rect fill="#fff" height="160" width="240" x="-120" y="-80"/>
+<rect height="48" width="240" x="-120" y="-80"/>
+<rect fill="#060" height="48" width="240" x="-120" y="32"/>
+<g id="spear">
+<use stroke="#000" xlink:href="#spearshape"/>
+<use fill="#fff" xlink:href="#spearshape"/>
+</g>
+<use transform="scale(-1,1)" xlink:href="#spear"/>
+<path d="M -120,-24 V 24 H -19 c 3,8 13,24 19,24 s 16,-16 19,-24 H 120 V -24 H 19 c -3,-8 -13,-24 -19,-24 s -16,16 -19,24 z" fill="#b00"/>
+<path d="M 19,24 c 3,-8 5,-16 5,-24 s -2,-16 -5,-24 c -3,8 -5,16 -5,24 s 2,16 5,24" id="deco_r"/>
+<use transform="scale(-1,1)" xlink:href="#deco_r"/>
+<g fill="#fff">
+<ellipse rx="4" ry="6"/>
+<path d="M 1,5.85 c 0,0 4,8 4,21 s -4,21 -4,21 z" id="deco_br"/>
+<use transform="scale(-1)" xlink:href="#deco_br"/>
+<use transform="scale(-1,1)" xlink:href="#deco_br"/>
+<use transform="scale(1,-1)" xlink:href="#deco_br"/>
+</g>
+</svg>

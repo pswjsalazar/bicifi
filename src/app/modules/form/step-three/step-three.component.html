@@ -1,0 +1,450 @@
+<kendo-pdf-export #pdf [scale]="scale" margin="2cm" paperSize="Tabloid">
+  <app-header-form [headerText]="['SUS OBJETIVOS FINANCIEROS']"
+                   [iconHeader]="['assets/img/ObjetivosFinancieros.svg']"></app-header-form>
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+          <th scope="col"></th>
+          <th *ngFor="let year of years; index as index" scope="col">
+            <span (click)="addColumnSales()" class="material-icons" style="font-size: 36px">add_circle</span>
+            <!--      <span (click)="removeColumnSales(index)" *ngIf="columnYear>1" class="material-icons" style="font-size: 36px">remove_circle</span>-->
+          </th>
+          <th scope="col"></th>
+          <th *ngFor="let year of yearsProjected; index as index" scope="col">
+            <span (click)="addColumnProjected()" class="material-icons" style="font-size: 36px">add_circle</span>
+            <!--      <span (click)="removeColumnProjected(index)" *ngIf="index!=0" class="material-icons" style="font-size: 36px">remove_circle</span>-->
+          </th>
+        </tr>
+        <tr>
+          <th scope="col"></th>
+          <th *ngFor="let year of years" scope="col">
+            <label>Ventas Logradas</label>
+          </th>
+          <th scope="col">Estimación</th>
+          <th *ngFor="let year of yearsProjected" scope="col">Proyectadas</th>
+        </tr>
+        <tr>
+          <th scope="col">U$D</th>
+          <th *ngFor="let year of years" scope="col">{{year.year}}</th>
+          <th scope="col">{{year}}</th>
+          <th *ngFor="let year of yearsProjected" scope="col">{{year.year}}</th>
+          <th scope="col">"Crecimiento Compuesto Anual CAGR"</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let financialObjectives of financialObjectivesList; index as index">
+          <td>
+            <label>{{financialObjectives.label}}</label>
+            <input [(ngModel)]="financialObjectives.textLabel" class="form-control" placeholder="Insertar nombre aca"
+                   type="text">
+            <span (click)="addRow(financialObjectives.type,index)"
+                  *ngIf="financialObjectives.type!=cannibalization.type"
+                  class="material-icons" style="font-size: 36px">add_circle</span>
+            <!--      <span (click)="removeRow(financialObjectives.type,index)"-->
+            <!--            *ngIf="financialObjectives.type!=cannibalization.type"-->
+            <!--            class="material-icons" style="font-size: 36px">remove_circle</span>-->
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectives.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectives.estimate" class="form-control" placeholder="$" type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectives.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectives.annualCompoundGrowth" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Ventas Netas</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.netSales.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.netSales.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.netSales.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.netSales.annualCompoundGrowth" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>Crecimiento promedio de la venta neta %</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.averageGrowth.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.averageGrowth.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.averageGrowth.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.averageGrowth.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>Margen Bruto Promedio %</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.averageGrossMargin.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.averageGrossMargin.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.averageGrossMargin.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.averageGrossMargin.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Costo directo</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.directCost.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.directCost.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.directCost.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.directCost.annualCompoundGrowth" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Margen Bruto</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.grossMargin.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.grossMargin.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.grossMargin.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.grossMargin.annualCompoundGrowth" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>Presupuesto de Mercadeo</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.marketingBudget.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.marketingBudget.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.marketingBudget.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.marketingBudget.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>Presupuesto de Ventas</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.salesBudget.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.salesBudget.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.salesBudget.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.salesBudget.annualCompoundGrowth" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>Otros Costos</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.otherCosts.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.otherCosts.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.otherCosts.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.otherCosts.annualCompoundGrowth" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>Ajustes</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.settings.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.settings.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.settings.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.settings.annualCompoundGrowth" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Gastos de Ventas y Mercadeo (Comercialización)</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.salesMarketingExpenses.salesAchieved"
+              class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.salesMarketingExpenses.estimate" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.salesMarketingExpenses.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.salesMarketingExpenses.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Gastos de Comercialización (% de ventas)</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.marketingExpenses.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.marketingExpenses.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.marketingExpenses.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.marketingExpenses.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Costos Administrativos y Otros</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.administrativeOtherCosts.salesAchieved"
+              class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.administrativeOtherCosts.estimate" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.administrativeOtherCosts.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.administrativeOtherCosts.annualCompoundGrowth"
+                   class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>Utilidad antes de impuestos, intereses, depreciacion y amortizacion EBITDA $</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.earningsBeforeTaxes.salesAchieved"
+              class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.earningsBeforeTaxes.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.earningsBeforeTaxes.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.earningsBeforeTaxes.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>EBITDA %</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.ebitda.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.ebitda.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.ebitda.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.ebitda.annualCompoundGrowth" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+        </tr>
+        <tr>
+          <th class="align-middle" scope="col">
+            <label>REVISION DE OPERACIONES</label>
+          </th>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.operationsReview.salesAchieved" class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.operationsReview.estimate" class="form-control" placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.operationsReview.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.operationsReview.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label># de clientes interesados contactados (Leads)</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.numberInterestedClientsContacted.salesAchieved"
+              class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.numberInterestedClientsContacted.estimate" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.numberInterestedClientsContacted.projected"
+              class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.numberInterestedClientsContacted.annualCompoundGrowth"
+                   class="form-control" placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>% EBITDA / Gastos de Comercialización</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.ebitdaSellingExpenses.salesAchieved"
+              class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.ebitdaSellingExpenses.estimate" class="form-control"
+                   placeholder="$"
+                   type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.ebitdaSellingExpenses.projected" class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.ebitdaSellingExpenses.annualCompoundGrowth" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        <tr>
+          <td class="align-middle">
+            <label>% Gastos Administrativos y otros sobre Ventas</label>
+          </td>
+          <td *ngFor="let salesAchieved of financialObjectivesBody.administrativeExpensesSales.salesAchieved"
+              class="align-middle">
+            <input [(ngModel)]="salesAchieved.salesAchieved" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.administrativeExpensesSales.estimate" class="form-control"
+                   placeholder="$" type="number">
+          </td>
+          <td *ngFor="let projected of financialObjectivesBody.administrativeExpensesSales.projected"
+              class="align-middle">
+            <input [(ngModel)]="projected.projected" class="form-control" placeholder="$" type="number">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="financialObjectivesBody.administrativeExpensesSales.annualCompoundGrowth"
+                   class="form-control"
+                   placeholder="$" type="number">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <div>
+        <div>
+          <div style="display: block">
+            <canvas [chartType]="barChartType"
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [legend]="barChartLegend"
+                    [options]="barChartOptions"
+                    [plugins]="barChartPlugins"
+                    baseChart>
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <button (click)="save()" class="btn btn-lg  text-white mr-3" style="background: #ff8380">Guardar</button>
+    <button (click)="pdf.saveAs('invoice.pdf')" class="k-buttonbtn btn-lg  text-white ml-3" style="background: #ff8380">
+      Exportar
+    </button>
+  </div>
+  <app-comments></app-comments>
+</kendo-pdf-export>

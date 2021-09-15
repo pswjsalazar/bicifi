@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "my_custom_font";
+  src: url("./assets/fonts/Muli.ttf") format("opentype");
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'my_custom_font', sans-serif;
+}
+
+.primaryTextColor {
+  color: #764fa8;
+}
+
+.secondaryTextColor {
+  color: #515151;
+}
+
+.buttonColor {
+  color: #ff8380;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+
+}

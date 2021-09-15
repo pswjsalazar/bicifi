@@ -1,0 +1,8 @@
+<svg viewBox="-75 -40 120 80" xmlns="http://www.w3.org/2000/svg">
+<title>Flag of Pakistan</title>
+<rect fill="#fff" height="80" width="120" x="-75" y="-40"/>
+<rect fill="#01411C" height="80" width="90" x="-45" y="-40"/>
+<circle fill="#fff" r="24"/>
+<circle cx="-7" cy="-40" fill="#01411C" r="22" transform="rotate(-41.63354, 45, -40)"/>
+<polygon fill="#fff" points="0,-513674 301930,415571 -488533,-158734 488533,-158734 -301930,415571" transform="rotate(-41.63354) translate(16) rotate(18) scale(0.00001557408)"/>
+</svg>

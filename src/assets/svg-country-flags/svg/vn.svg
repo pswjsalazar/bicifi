@@ -1,0 +1,12 @@
+<svg viewBox="-15 -10 30 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect fill="#DA251d" height="30" width="40" x="-20" y="-15"/>
+<g id="g" transform="translate(0,-6)">
+<polyline fill="#FF0" id="g1" points="0,0 0,6 4,6" transform="rotate(18)"/>
+<use transform="scale(-1,1)" xlink:href="#g1"/>
+</g>
+<g id="g2" transform="rotate(72)">
+<use xlink:href="#g"/>
+<use transform="rotate(72)" xlink:href="#g"/>
+</g>
+<use transform="scale(-1,1)" xlink:href="#g2"/>
+</svg>

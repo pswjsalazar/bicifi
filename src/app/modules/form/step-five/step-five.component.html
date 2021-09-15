@@ -1,0 +1,130 @@
+<kendo-pdf-export #pdf [scale]="scale" margin="2cm" paperSize="Tabloid">
+  <app-header-form [headerText]="['ANÁLISIS DE SEGMENTOS']"
+                   [iconHeader]="['assets/img/Targeting.svg']"></app-header-form>
+
+  <div class="row">
+    <div class="col-8">
+      <table class="table table-bordered table-responsive">
+        <thead>
+        <tr>
+          <th class="align-middle" colspan="2" scope="col">"List your most important Segmentos Rate them by shape: Very
+            Good
+            Shape + 2, Good Shape
+            +1 , Modest
+            Shape 0, Bad Shape -1, Worst Shape -2 "
+          </th>
+          <th class="align-middle" scope="col">"Su Nota -2 -+ 2"
+          </th>
+          <th class="align-middle" scope="col">"Atractividad Segmento - 2 - + 2"
+          </th>
+          <th class="align-middle" scope="col">"Potencial de la Oportunidad Total U$ MM"
+          </th>
+          <th class="align-middle" scope="col">"Ventas Ultimo Ano Por Segmento U$ MM"
+          </th>
+          <th class="align-middle" scope="col">Participación de Mercado Estimada</th>
+          <th class="align-middle" scope="col">Barreras que posee para tener éxito en cada Segmento</th>
+          <th class="align-middle" scope="col">Acciones para eliminar las barreras</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let segmentAnalysis of segmentAnalysisList; index as index">
+          <th class="align-middle" scope="col">
+            <label>Segmento {{index + 1}}</label>
+            <br>
+            <span (click)="addRow()" class="material-icons" style="font-size: 36px">add_circle</span>
+            <span (click)="removeRow(index)" *ngIf="index!=0" class="material-icons"
+                  style="font-size: 36px">remove_circle</span>
+          </th>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.segment" class="form-control" placeholder="Ingrese Segmento" type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.note" class="form-control" placeholder="$" type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.attractivenessSegment" class="form-control" placeholder="$" type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.totalOpportunityPotential" class="form-control" placeholder="$"
+                   type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.lastSalesYearBySegment" class="form-control" placeholder="$" type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.estimatedMarketShare" class="form-control"
+                   placeholder="$" type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.barriers" class="form-control"
+                   placeholder="Ejemplo: Produccion cerca a Minas"
+                   type="text">
+          </td>
+          <td class="align-middle">
+            <input [(ngModel)]="segmentAnalysis.actionsRemoveBarriers" class="form-control"
+                   placeholder=" Ejemplo:  Asociarse con actual distribuidor" type="text">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <th class="align-middle">
+            <label>Su Nota Promedio</label>
+          </th>
+          <th class="align-middle">
+            <label>Atractividad Promedio de Segmentos</label>
+          </th>
+          <th class="align-middle">
+            <label>"Oportunidad Total"</label>
+          </th>
+          <th class="align-middle">
+            <label>Su total de Ventas Por Semento Ultimo Ano</label>
+          </th>
+          <th class="align-middle">
+            <label>Total Participación de Mercado</label>
+          </th>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td class="align-middle">
+            <label>-</label>
+          </td>
+          <td class="align-middle">
+            <label>-</label>
+          </td>
+          <td class="align-middle">
+            <label>{{totalOpportunityPotential()}}</label>
+          </td>
+          <td class="align-middle">
+            <label>{{totalLastSalesYearBySegment()}}</label>
+          </td>
+          <td class="align-middle">
+            <label>{{totalEstimatedMarketShare()}}</label>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <div>
+        <div>
+          <div style="display: block">
+            <canvas [chartType]="bubbleChartType"
+                    [colors]="bubbleChartColors"
+                    [datasets]="bubbleChartData"
+                    [legend]="bubbleChartLegend"
+                    [options]="bubbleChartOptions"
+                    baseChart>
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <button (click)="save()" class="btn btn-lg  text-white mr-3" style="background: #ff8380">Guardar</button>
+    <button (click)="pdf.saveAs('invoice.pdf')" class="k-buttonbtn btn-lg  text-white ml-3" style="background: #ff8380">
+      Exportar
+    </button>
+  </div>
+  <app-comments></app-comments>
+</kendo-pdf-export>

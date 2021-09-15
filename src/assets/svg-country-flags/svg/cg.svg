@@ -1,0 +1,5 @@
+<svg viewBox="0 0 3 2" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#009543" height="2" id="green_area" width="3"/>
+<path d="M 0 2 L 2 0 h 1 v 2 z" fill="#FBDE4A" id="yellow_area"/>
+<path d="M 3 0 v 2 h -2 z" fill="#DC241F" id="red_area"/>
+</svg>

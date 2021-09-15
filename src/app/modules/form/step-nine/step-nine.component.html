@@ -1,0 +1,48 @@
+<kendo-pdf-export #pdf [scale]="scale" margin="2cm" paperSize="Tabloid">
+  <app-header-form [headerText]="['PLAN']" [iconHeader]="['assets/img/Plan.svg']"></app-header-form>
+  <div class="row">
+    <div class="col-2">
+      <button (click)="addPlan()" class="btn btn-lg  text-white" style="background: #ff8380">Crear Plan</button>
+    </div>
+    <div *ngIf="plans.length>0" class="col-8">
+      <table class="table table-bordered ">
+        <thead>
+        <tr>
+          <th scope="col">Ingrese Estrategia para Eliminar Barrera</th>
+          <th scope="col">Proyectos</th>
+          <th scope="col">Metrica</th>
+          <th scope="col">Quien</th>
+          <th scope="col">Cuando</th>
+          <th scope="col">Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let plan of plans">
+          <td>{{plan.strategyEliminateBarrier}}</td>
+          <td *ngFor="let project of plan.project">
+            {{project.name}}
+          </td>
+          <td *ngFor="let metrics of plan.metrics">
+            {{metrics.name}}
+          </td>
+          <td *ngFor="let who of plan.who">
+            {{who.name}}
+          </td>
+          <td *ngFor="let when of plan.when">
+            {{when.name}}
+          </td>
+          <td *ngFor="let state of plan.state">
+            {{state.name}}
+          </td>
+          <td>
+            <span (click)="edit(plan)" class="material-icons" style="font-size: 36px">edit</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <button (click)="save()" class="btn btn-lg  text-white" style="background: #ff8380">Guardar</button>
+  <app-comments></app-comments>
+</kendo-pdf-export>

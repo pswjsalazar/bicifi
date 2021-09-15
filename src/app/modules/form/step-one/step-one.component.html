@@ -1,0 +1,200 @@
+<kendo-pdf-export #pdf [scale]="scale" margin="2cm" paperSize="Tabloid">
+  <app-header-form [headerText]="['INFORMACIÓN BÁSICA']" [iconHeader]="['assets/img/Inicio.svg']"></app-header-form>
+  <div class="row">
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th colspan="2" scope="col">DATOS DEL PROYECTO</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="region">Región</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.region" class="form-control" id="region" placeholder="Ingrese Región"
+                   type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="country">Pais</label>
+          </th>
+          <td>
+            <mat-select-country (onCountrySelected)="onCountrySelected($event)" [value]="basicInformation.country"
+                                appearance="outline" id="country"
+                                label="Country">
+            </mat-select-country>
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="city">Ciudad</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.city" class="form-control" id="city" placeholder="Ingrese Ciudad"
+                   type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="business">Empresa</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.business" class="form-control" id="business"
+                   placeholder="Ingrese Empresa" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="webPage">Pagina Web de la Empresa </label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.webPage" class="form-control" id="webPage"
+                   placeholder="Ingrese Pagina Web" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="projectLeaderName">Líder del Proyecto Nombre</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.projectLeaderName" class="form-control" id="projectLeaderName"
+                   placeholder="Ingrese Nombre" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="emailProjectLeader">Líder del Proyecto Email</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.emailProjectLeader" class="form-control" id="emailProjectLeader"
+                   placeholder="Ingrese Email" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="cellProjectLeader">Líder del Proyecto Celular</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.cellProjectLeader" class="form-control" id="cellProjectLeader"
+                   placeholder="Ingrese Celular" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="collaborationSiteLink">Link de sitio de Colaboración</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.collaborationSiteLink" class="form-control" id="collaborationSiteLink"
+                   placeholder="Ingrese Link" type="text">
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th colspan="2" scope="col">INFORMACIÓN INTRODUCTORIA</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="industry">Industria</label>
+          </th>
+          <td>
+            <select #industry="ngModel" [(ngModel)]="basicInformation.industry"
+                    class="form-select form-select-lg"
+                    id="industry"
+                    name="industry">
+              <option *ngFor="let industry of industries" [ngValue]="industry.name">{{industry.name}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="segment">Principales Segmentos</label>
+          </th>
+          <td>
+            <select #mainSegments="ngModel" [(ngModel)]="basicInformation.mainSegments"
+                    class="form-select form-select-lg"
+                    id="segment"
+                    name="segment">
+              <option *ngFor="let segment of segments" [ngValue]="segment.name">{{segment.name}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr *ngFor="let competitor of basicInformation.mainCompetitors; index as index">
+          <th scope="col">
+            <label class="mt-2">Principales Competidores {{index + 1}}</label>
+          </th>
+          <td>
+            <input [(ngModel)]="competitor.competitor" class="form-control"
+                   placeholder="Ingrese Competidor" type="text">
+          </td>
+          <td class="align-middle">
+            <span (click)="addCompetitor()" class="material-icons" style="font-size: 36px">add_circle</span>
+            <span (click)="removeCompetitor()" *ngIf="index!=0" class="material-icons" style="font-size: 36px">remove_circle</span>
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="numEmployees"># Empleados</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.numEmployees" class="form-control" id="numEmployees"
+                   placeholder="Ingrese # Empleados" type="text">
+          </td>
+        </tr>
+        <tr>
+          <th scope="col">
+            <label class="mt-2" for="projectStatus">Estado Proyecto</label>
+          </th>
+          <td>
+            <input [(ngModel)]="basicInformation.projectStatus" class="form-control" id="projectStatus"
+                   placeholder="Ingrese Estado Proyecto" type="text">
+          </td>
+        </tr>
+        <tr *ngFor="let estimatedSale of basicInformation.estimatedSales; index as index">
+          <th scope="col">
+            <label class="mt-2">Ventas Estimadas para {{estimatedSale.year}}</label>
+          </th>
+          <td>
+            <input [(ngModel)]="estimatedSale.estimatedSale" class="form-control"
+                   placeholder="Ingrese Ventas Estimadas" type="text">
+          </td>
+          <td class="align-middle" rowspan="1">
+            <span (click)="addEstimatedSale()" class="material-icons" style="font-size: 36px">add_circle</span>
+            <span (click)="removeEstimatedSale()" *ngIf="index!=0" class="material-icons" style="font-size: 36px">remove_circle</span>
+          </td>
+        </tr>
+        <tr *ngFor="let marketingBudget of basicInformation.marketingBudget; index as index">
+          <th scope="col">
+            <label class="mt-2">Presupuesto de mercadeo {{marketingBudget.year}}</label>
+          </th>
+          <td>
+            <input [(ngModel)]="marketingBudget.marketingBudget" class="form-control"
+                   placeholder="Ingrese Presupuesto" type="text">
+          </td>
+          <td class="align-middle" rowspan="1">
+            <span (click)="addMarketingBudget()" class="material-icons" style="font-size: 36px">add_circle</span>
+            <span (click)="removeMarketingBudget()" *ngIf="index!=0" class="material-icons" style="font-size: 36px">remove_circle</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <button (click)="save()" class="btn btn-lg  text-white mr-3" style="background: #ff8380">Guardar</button>
+    <button (click)="pdf.saveAs('invoice.pdf')" class="k-buttonbtn btn-lg  text-white ml-3" style="background: #ff8380">
+      Exportar
+    </button>
+  </div>
+  <app-comments></app-comments>
+</kendo-pdf-export>

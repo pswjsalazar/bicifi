@@ -1,0 +1,25 @@
+<svg viewBox="0 0 225 150" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect fill="#f93" height="150" width="225"/>
+<rect fill="#fff" height="50" width="225" y="50"/>
+<rect fill="#128807" height="50" width="225" y="100"/>
+<g transform="translate(112.5,75)">
+<circle fill="#008" r="20"/>
+<circle fill="#fff" r="17.5"/>
+<circle fill="#008" r="3.5"/>
+<g id="d">
+<g id="c">
+<g id="b">
+<g id="a">
+<circle fill="#008" r="0.875" transform="rotate(7.5) translate(17.5)"/>
+<path d="M 0,17.5 0.6,7 C 0.6,7 0,2 0,2 0,2 -0.6,7 -0.6,7 L 0,17.5 z" fill="#008"/>
+</g>
+<use transform="rotate(15)" xlink:href="#a"/>
+</g>
+<use transform="rotate(30)" xlink:href="#b"/>
+</g>
+<use transform="rotate(60)" xlink:href="#c"/>
+</g>
+<use transform="rotate(120)" xlink:href="#d"/>
+<use transform="rotate(-120)" xlink:href="#d"/>
+</g>
+</svg>

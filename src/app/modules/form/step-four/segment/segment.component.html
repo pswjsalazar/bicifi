@@ -1,0 +1,96 @@
+<div *ngIf="smallView; else elseBlock">
+  <div *ngFor="let segment of items; index as index">
+    <div class="row mb-3">
+      <div class="col-11">
+        <div class="card">
+          <div class="card-body">
+            {{segment.briefcase}}
+          </div>
+        </div>
+      </div>
+      <div class="col-1 mt-3">
+        <span (click)="edit(segment)" class="material-icons" style="font-size: 36px">edit</span>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #elseBlock>
+  <form #form="ngForm" class="mb-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">Ingrese Portafolio</label>
+          </div>
+          <div class="col">
+            <input [(ngModel)]="segment.briefcase" [ngModelOptions]="{standalone: true}" class="form-control"
+                   placeholder="Ingrese porcentaje"
+                   type="text">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">Seleccione Valor</label>
+          </div>
+          <div class="col">
+            <select #industry="ngModel" [(ngModel)]="segment.value"
+                    class="form-select form-select-lg"
+                    id="industry"
+                    name="industry">
+              <option *ngFor="let value of values" [ngValue]="value.name">{{value.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="font-weight-bold" style="background-color: gray">
+          DETALLES DEL SEGMENTO
+        </h3>
+        <div class="row">
+          <div class="col">
+            <label class="font-weight-bold">Nombre del Segmento o Tier:</label>
+          </div>
+          <div class="col">
+            <input [(ngModel)]="segment.segmentName" [ngModelOptions]="{standalone: true}" class="form-control"
+                   placeholder="Ingrese Segmento" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="card-header">
+        <h3 class="font-weight-bold">
+          PROPUESTA DE VALOR
+        </h3>
+      </div>
+      <div class="card-body">
+        <input [(ngModel)]="segment.valueProposal" [ngModelOptions]="{standalone: true}" class="form-control mb-3"
+               placeholder="Ingrese Propuesta de Valor" type="text">
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">% de los vendedores y operacion Lista</label>
+          </div>
+          <div class="col">
+            <input [(ngModel)]="segment.percentSellers" [ngModelOptions]="{standalone: true}" class="form-control"
+                   placeholder="Ingrese porcentaje"
+                   type="text">
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label class="font-weight-bold">% Margen de Utilidad</label>
+          </div>
+          <div class="col">
+            <input [(ngModel)]="segment.percentProfit" [ngModelOptions]="{standalone: true}" class="form-control"
+                   placeholder="Ingrese porcentaje"
+                   type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!editView" class="text-center mt-3">
+      <button (click)="save()" class="btn btn-lg  text-white mr-3 mb-3 " style="background: #ff8380">Guardar Segmento
+      </button>
+    </div>
+  </form>
+</ng-template>

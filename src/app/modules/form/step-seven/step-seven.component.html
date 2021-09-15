@@ -1,0 +1,65 @@
+<kendo-pdf-export #pdf [scale]="scale" margin="2cm" paperSize="Tabloid">
+
+  <app-header-form [headerText]="['CLIENTES CLAVE - ESPACIO BLANCO']"
+                   [iconHeader]="['assets/img/ClientesClaveEspacioBlanco.svg']"></app-header-form>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th colspan="3" scope="col">"Ultimo dato de Ventas 20 Top Clientes"</th>
+      <th scope="col">Nombre de Clientes</th>
+      <th scope="col">"Cliente tiene Plan de Cuenta S / N (Link al plan de cuenta) "</th>
+      <th *ngFor="let sol of sols; index as index" scope="col">
+        <label>{{sol.label}}{{index + 1}}</label>
+        <br>
+        <span (click)="addColumnSales(index)" class="material-icons" style="font-size: 36px">add_circle</span>
+      </th>
+      <th scope="col">Venta Total Cliente</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let keyCustomers of keyCustomersList; index as index">
+      <td class="align-middle">
+      <span (click)="addRow()"
+            class="material-icons" style="font-size: 36px">add_circle</span>
+      </td>
+      <td class="align-middle">
+        <input [(ngModel)]="keyCustomers.segment" class="form-control" placeholder="Ingrese Segmento" type="text">
+      </td>
+      <td class="align-middle">
+        <label>Nombre Cliente Top</label>
+      </td>
+      <td class="align-middle">
+        <input [(ngModel)]="keyCustomers.nameClient" class="form-control" placeholder="Ingrese Cliente" type="text">
+      </td>
+      <td class="align-middle">
+        <input [(ngModel)]="keyCustomers.clientAccountPlan" class="form-control" placeholder="Ingrese Plan de Cuenta"
+               type="text">
+      </td>
+      <td *ngFor="let sol of keyCustomers.sol; index as index" class="align-middle">
+        <input [(ngModel)]="sol.sol" class="form-control" placeholder="Ingrese Sol" type="text">
+      </td>
+      <td class="align-middle text-left">
+        <label>$ {{totalCustomerSale(keyCustomers)}}</label>
+      </td>
+    </tr>
+    <tr>
+      <th class="align-middle" colspan="3" scope="col">Subtotals per Product</th>
+      <td></td>
+      <td></td>
+      <td *ngFor="let sol of sols; index as index" class="align-middle text-left">
+        <label class="ml-3">$ {{totalSol(index)}}</label>
+      </td>
+      <td class="align-middle text-left">
+        <label>$ {{totalProduct()}}</label>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="row justify-content-center">
+    <button (click)="save()" class="btn btn-lg  text-white mr-3" style="background: #ff8380">Guardar</button>
+    <button (click)="pdf.saveAs('invoice.pdf')" class="k-buttonbtn btn-lg  text-white ml-3" style="background: #ff8380">
+      Exportar
+    </button>
+  </div>
+  <app-comments></app-comments>
+</kendo-pdf-export>

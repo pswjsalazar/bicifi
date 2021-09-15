@@ -1,0 +1,12 @@
+<svg viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect fill="#FECB00" height="6" width="18"/>
+<rect fill="#EA2839" height="6" width="18" y="6"/>
+<rect fill="#34B233" height="4" width="18" y="4"/>
+<g transform="translate(9,6.422)scale(4.422)">
+<polygon fill="#FFF" id="pt" points="-0.3249196962329062,0 0,-1 0.3249196962329062,0"/>
+<use transform="rotate(-144)" xlink:href="#pt"/>
+<use transform="rotate(-72)" xlink:href="#pt"/>
+<use transform="rotate(72)" xlink:href="#pt"/>
+<use transform="rotate(144)" xlink:href="#pt"/>
+</g>
+</svg>

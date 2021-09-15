@@ -1,0 +1,153 @@
+<kendo-pdf-export #pdf [scale]="scale" margin="2cm" paperSize="Tabloid">
+  <app-header-form [headerText]="['PRIORIZADOR EMPRENDIMIENTOS']"
+                   [iconHeader]="['assets/img/PriorizadorEmprendimientos.svg']"></app-header-form>
+  <div class="container-fluid">
+    <table class="table table-bordered table-responsive">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th colspan="4" scope="col">Calificaciones para priorizar Proyectos en consideracion</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th *ngFor="let head of headElements" scope="col"></th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">9</th>
+        <th scope="col">Muy Alto</th>
+        <th scope="col">>80 %</th>
+        <th scope="col">Menos de 6 Meses</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th *ngFor="let head of headElements" scope="col"></th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">3</th>
+        <th scope="col">Alto</th>
+        <th scope="col">50-80 %</th>
+        <th scope="col">Entre 3 y 6 Meses</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th *ngFor="let head of headElements" scope="col"></th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">1</th>
+        <th scope="col">Bajo</th>
+        <th scope="col">30-50 %</th>
+        <th scope="col">Entre 6 y 9 Meses</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th *ngFor="let head of headElements; index as index" scope="col">
+          <span (click)="addColumn()" class="material-icons" style="font-size: 36px">add_circle</span>
+          <span (click)="removeColumn()" *ngIf="index!=0" class="material-icons"
+                style="font-size: 36px">remove_circle</span>
+        </th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">0</th>
+        <th scope="col">Muy Bajo</th>
+        <th scope="col"><30 %</th>
+        <th scope="col">Mas de 9 Meses</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th [colSpan]="colspan" scope="col">Impacto Economico en Ventas</th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Tipo de Proyecto</th>
+        <th scope="col">% de Importancia</th>
+        <th scope="col">50</th>
+        <th scope="col">25</th>
+        <th scope="col">25</th>
+        <th scope="col">100</th>
+        <th scope="col"></th>
+        <th *ngFor="let head of headElements" class="align-middle" rowspan="6" scope="col"><input
+          [(ngModel)]="head.columnName" class="form-control" placeholder="Insertar texto aca" type="text"></th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Introduccion de producto nuevo</th>
+        <th scope="col">9</th>
+        <th class="align-middle" rowspan="5" scope="col">Nivel de Ventas</th>
+        <th class="align-middle" rowspan="5" scope="col">% de Exito</th>
+        <th class="align-middle" rowspan="5" scope="col">"Tiempo en Completar"</th>
+        <th class="align-middle" rowspan="5" scope="col">"Puntaje Por Proyecto"</th>
+        <th class="align-middle" rowspan="5" scope="col">Nombre Lider</th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Desarrollo planes de cuenta</th>
+        <th scope="col">3</th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Generacion de demanda</th>
+        <th scope="col">1</th>
+      </tr>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Proyecto de Negocio</th>
+        <th scope="col">0</th>
+      </tr>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Type of Project</th>
+        <th scope="col">Name of Project</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let element of entrepreneurshipPrioritizeList; index as index">
+        <th scope="col">{{index + 1}}</th>
+        <td><input [(ngModel)]="element.typeProject" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td><input [(ngModel)]="element.nameProject" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td><input [(ngModel)]="element.levelSales" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td><input [(ngModel)]="element.percentExit" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td><input [(ngModel)]="element.timeComplete" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td><input [(ngModel)]="element.scoreProject" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td><input [(ngModel)]="element.leaderName" class="form-control" placeholder="Insertar texto aca" type="text">
+        </td>
+        <td *ngFor="let labelYear of element.labelYear"><input [(ngModel)]="labelYear.labelYear" class="form-control"
+                                                               placeholder="Insertar texto aca"
+                                                               type="number"></td>
+        <td class="align-middle">
+          <span (click)="addRow()" class="material-icons" style="font-size: 36px">add_circle</span>
+          <span (click)="removeRow()" *ngIf="index!=0" class="material-icons" style="font-size: 36px">remove_circle</span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td *ngFor="let head of headElements; index as index">
+          <label>{{totalValue(index) | currency:'':'':'0.0-0'}}</label></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row justify-content-center">
+    <button (click)="save()" class="btn btn-lg  text-white mr-3" style="background: #ff8380">Guardar</button>
+    <button (click)="pdf.saveAs('invoice.pdf')" class="k-buttonbtn btn-lg  text-white ml-3" style="background: #ff8380">
+      Exportar
+    </button>
+  </div>
+  <app-comments></app-comments>
+</kendo-pdf-export>

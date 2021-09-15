@@ -1,0 +1,33 @@
+<svg viewBox="-17.582 -4.664 71.571 87.246" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Flag of Nepal</title>
+<desc>Coding according to the official construction in "Constitution of the Kingdom of Nepal, Article 5, Shedule 1", adopted in November 1990</desc>
+<use stroke="#003893" stroke-width="5.1646754223" xlink:href="#b"/>
+<path d="M -15,37.5735931288 h 60 L -15,0 v 80 h 60 L -15,20 z" fill="#DC143C" id="b"/>
+<g fill="#fff">
+<path d="M -11.9502769431,23.4834957055 A 12.8400974233,12.8400974233 0 0,0 11.9502769431,23.4834957055 A 11.9502769431 11.9502769431 0 0,1 -11.9502769431,23.4834957055"/>
+<g transform="translate(0,29.0445562765) scale(5.5610605710)">
+<circle r="1"/>
+<g id="jags6">
+<g id="jags3">
+<path d="M 0.195090322016,-0.980785280403 L 0,-1.388784109750 L -0.195090322016,-0.980785280403" id="jag" transform="rotate(11.25)"/>
+<use transform="rotate(22.5)" xlink:href="#jag"/>
+<use transform="rotate(45)" xlink:href="#jag"/>
+</g>
+<use transform="rotate(67.5)" xlink:href="#jags3"/>
+</g>
+<use transform="scale(-1, 1)" xlink:href="#jags6"/>
+</g>
+<g transform="translate(0,58.7867965644) scale(8.1433982822)">
+<circle r="1"/>
+<g id="rays4">
+<g id="rays2">
+<path d="M 0.258819045103,0.965925826289 L 0,1.576749285537 L -0.258819045103,0.965925826289" id="ray"/>
+<use transform="rotate(180)" xlink:href="#ray"/>
+</g>
+<use transform="rotate(90)" xlink:href="#rays2"/>
+</g>
+<use transform="rotate(30)" xlink:href="#rays4"/>
+<use transform="rotate(60)" xlink:href="#rays4"/>
+</g>
+</g>
+</svg>

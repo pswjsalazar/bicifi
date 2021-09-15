@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-body">
+    <form>
+      <div class="row mb-3">
+        <div class="col">
+          <table class="table table-borderless">
+            <thead>
+            <tr>
+              <th scope="col">Ingrese Estrategia para Eliminar Barrera</th>
+              <th scope="col">Proyectos</th>
+              <th scope="col">Metrica</th>
+              <th scope="col">Quien</th>
+              <th scope="col">Cuando</th>
+              <th scope="col">Estado</th>
+              <!--              <th scope="col">-->
+              <!--                <span (click)="addRow()" class="material-icons" style="font-size: 36px">add_circle</span>-->
+              <!--              </th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="align-middle">
+                <input [(ngModel)]="plan.strategyEliminateBarrier" [ngModelOptions]="{standalone: true}"
+                       class="form-control "
+                       placeholder="Ingrese Estrategia"
+                       type="text">
+              </td>
+              <td class="align-middle">
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr *ngFor="let project of plan.project">
+                    <td>
+                      <input [(ngModel)]="project.name" [ngModelOptions]="{standalone: true}" class="form-control "
+                             placeholder="Ingrese proyecto" type="text">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="align-middle">
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr *ngFor="let metrics of plan.metrics">
+                    <td>
+                      <input [(ngModel)]="metrics.name" [ngModelOptions]="{standalone: true}" class="form-control "
+                             placeholder="Ingrese metrica" type="text">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="align-middle">
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr *ngFor="let who of plan.who">
+                    <td>
+                      <input [(ngModel)]="who.name" [ngModelOptions]="{standalone: true}" class="form-control "
+                             placeholder="Ingrese metrica" type="text">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="align-middle">
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr *ngFor="let when of plan.when">
+                    <td>
+                      <input [(ngModel)]="when.name" [ngModelOptions]="{standalone: true}" class="form-control "
+                             placeholder="Ingrese metrica" type="text">
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td>
+                <table class="table table-borderless">
+                  <tbody>
+                  <tr *ngFor="let state of plan.state">
+                    <td height="62">
+                      <select [(ngModel)]="state.name" [ngModelOptions]="{standalone: true}"
+                              class="form-select form-select-lg mt-2 mb-2">
+                        <option *ngFor="let value of values" [ngValue]="value.name">{{value.name}} </option>
+                      </select>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div *ngIf="!editView" class="text-center mt-3">
+        <button (click)="save()" class="btn btn-lg  text-white mr-3 mb-3 " style="background: #ff8380">Guardar Plan
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

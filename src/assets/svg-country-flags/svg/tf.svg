@@ -1,0 +1,15 @@
+<svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<path d="M0,-1 L0.58779,0.80902 L-0.95106,-0.30902 L0.95106,-0.30902 L-0.58779,0.80902z" fill="#fff" id="s" transform="scale(21)"/>
+</defs>
+<rect fill="#002395" height="400" width="600"/>
+<rect fill="#fff" height="164" width="244"/>
+<rect fill="#002395" height="160" width="80"/>
+<rect fill="#ED2939" height="160" width="80" x="160"/>
+<path d="M355,183 l12.875,20.5 h36.625 v71.5 l-27.5,-43 -37,59 h18 l19,-34 39,70 39,-70 19,34 h18 l-37,-59 -27.5,43 v-39.5 h16.5 l12.25,-19.5 h-28.75 v-12.5 h36.625 l12.875,-20.5 h-122z M398,270.5h-40v14h40z M474,270.5h-40v14h40z" fill="#fff"/>
+<use x="416" xlink:href="#s" y="362"/>
+<use x="371" xlink:href="#s" y="328"/>
+<use x="461" xlink:href="#s" y="328"/>
+<use x="333" xlink:href="#s" y="227"/>
+<use x="499" xlink:href="#s" y="227"/>
+</svg>

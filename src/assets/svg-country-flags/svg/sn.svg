@@ -1,0 +1,15 @@
+<svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect fill="#00853f" height="600" width="300"/>
+<rect fill="#fdef42" height="600" width="300" x="300"/>
+<rect fill="#e31b23" height="600" width="300" x="600"/>
+<g fill="#00853f" transform="translate(450,300)">
+<g id="c">
+<path d="M 0,-100 v 100 h 50 z" id="t" transform="rotate(18 0,-100)"/>
+<use transform="scale(-1,1)" xlink:href="#t"/>
+</g>
+<use transform="rotate(72)" xlink:href="#c"/>
+<use transform="rotate(144)" xlink:href="#c"/>
+<use transform="rotate(216)" xlink:href="#c"/>
+<use transform="rotate(288)" xlink:href="#c"/>
+</g>
+</svg>

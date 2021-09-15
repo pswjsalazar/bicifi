@@ -1,0 +1,133 @@
+<div class="text-center ">
+  <div class="row justify-content-center mb-2" style="border-radius: 10%;">
+    <div class="col-10 card mat-elevation-z2" style="border-radius: 10%;">
+      <div class="card-header">
+        <h1 style="height: 10px;font-family: 'my_custom_font',sans-serif">BICIFI EMPRESARIAL - EMPRENDEDOR</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" style="border-radius: 10%;">
+    <div class="col-10 card mat-elevation-z2 " style="border-radius: 10%;">
+      <div (click)="showInstructions()" class="card-header mt-3" style="background: #515151">
+        <h3 style="height: 10px">
+          <label class="text-white" style="font-family: 'my_custom_font',sans-serif">INSTRUCCIONES</label>
+        </h3>
+      </div>
+      <div *ngIf="instructionsVisible" class="card-body">
+        <h2 style="font-family: 'my_custom_font',sans-serif">
+          Bicifi Emprendedor es una metodología de desarrollo de plan de negocios para empresas en funcionamiento o para
+          personas naturales que estan deseando organizar su plan de emprendimiento. Al llenar los campos podras
+          utilizar
+          una metodología poderosa para planeación financiera y comercial incrementando la probabilidad de logro de tus
+          metas empresariales.
+        </h2>
+      </div>
+    </div>
+    <div style="font-family: 'my_custom_font',sans-serif">
+      <ul #nav="ngbNav" class="nav-tabs text-center" ngbNav>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/Inicio.svg"/>
+            <p>
+              <label>Inicio</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-one></app-step-one>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/PriorizadorEmprendimientos.svg"/>
+            <p>
+              <label>Priorizador Emprendimientos</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-two></app-step-two>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/ObjetivosFinancieros.svg"/>
+            <p>
+              <label>Objetivos<br/>Financieros</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-three></app-step-three>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/PortafolioProductos.svg"/>
+            <p>
+              <label>Portafolio<br/>Productos</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-four></app-step-four>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/Targeting.svg"/>
+            <p>
+              <label>Targeting</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-five></app-step-five>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/Canal.svg"/>
+            <p>
+              <label>Canal</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-six></app-step-six>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/ClientesClaveEspacioBlanco.svg"/>
+            <p>
+              <label>Clientes Clave y <br/> Espacio Blanco</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-seven></app-step-seven>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid ml-3 icon" src="../../../assets/imgs/Precios.svg"/>
+            <p>
+              <label>Precios</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-eight></app-step-eight>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>
+            <img alt="" class="img-fluid icon" src="../../../assets/imgs/Plan.svg"/>
+            <p>
+              <label>Plan</label>
+            </p>
+          </a>
+          <ng-template ngbNavContent>
+            <app-step-nine></app-step-nine>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav"></div>
+    </div>
+  </div>
+</div>
+
+

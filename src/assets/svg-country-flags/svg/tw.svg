@@ -1,0 +1,9 @@
+<svg viewBox="-60 -40 240 160" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect fill="#fe0000" height="100%" width="100%" x="-60" y="-40"/>
+<rect fill="#000095" height="50%" width="50%" x="-60" y="-40"/>
+<path d="M 8,0 L 0,30 L -8,0 L 0,-30 M 0,8 L 30,0 L 0,-8 L -30,0" fill="#fff" id="four_rays"/>
+<use transform="rotate(30)" xlink:href="#four_rays"/>
+<use transform="rotate(60)" xlink:href="#four_rays"/>
+<circle fill="#000095" r="17"/>
+<circle fill="#fff" r="15"/>
+</svg>

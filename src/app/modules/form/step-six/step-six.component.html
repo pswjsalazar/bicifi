@@ -1,0 +1,13 @@
+<app-header-form [headerText]="['DISEÑO DE CANAL DE DISTRIBUCIÓN']"
+                 [iconHeader]="['assets/img/Canal.svg']"></app-header-form>
+<div class="row">
+  <div class="col-2">
+    <button (click)="addSegment()" class="btn btn-lg  text-white" style="background: #ff8380">Crear Segmento</button>
+  </div>
+  <div *ngIf="items.length>0" class="col-8">
+    <app-canal-segment [items]="items" [smallView]="true" class="mb-3"></app-canal-segment>
+  </div>
+  <div class="col-2"></div>
+</div>
+<button (click)="save()" class="btn btn-lg  text-white" style="background: #ff8380">Guardar</button>
+<app-comments></app-comments>
